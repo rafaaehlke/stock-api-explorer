@@ -27,6 +27,8 @@ class SessionsController {
       expiresIn
     });
 
+    delete user.password // remove a  resposta com senha do local storage
+
     response.status(201).json({ token, user });
   }
 }
