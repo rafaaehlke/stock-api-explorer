@@ -27,9 +27,17 @@ class SessionsController {
       expiresIn
     });
 
+    // nome do cookie, valor do conteudo, objeto com config de segurança
+    response.cookie("token", token, {
+      httpOnly: true,  // impede que o cookie seja acessado por scripts, somente acessada por req. http
+      sameSite: "none", // navegador envia cookies tanto para req cross-site / same-site
+      secure: true,
+      maxAge: 15 * 60 * 1000 // tempo de validade do cookie, 15 minutos
+    }) 
+
     delete user.password // remove a  resposta com senha do local storage
 
-    response.status(201).json({ token, user });
+    response.status(201).json({ user });
   }
 }
 
