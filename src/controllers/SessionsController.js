@@ -32,13 +32,15 @@ class SessionsController {
       httpOnly: true,  // impede que o cookie seja acessado por scripts, somente acessada por req. http
       sameSite: "none", // navegador envia cookies tanto para req cross-site / same-site
       secure: true,
-      maxAge: 15 * 60 * 1000 // tempo de validade do cookie, 15 minutos
+      maxAge: 2 * 60 * 1000 // tempo de validade do cookie, 2 minutos
     }) 
 
     delete user.password // remove a  resposta com senha do local storage
 
     response.status(201).json({ user });
   }
+
+
 }
 
 module.exports = SessionsController;
